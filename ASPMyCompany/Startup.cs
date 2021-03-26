@@ -27,6 +27,9 @@ namespace ASPMyCompany
         public Startup(IConfiguration configuration)
             => Configuration = configuration;
 
+
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -70,13 +73,16 @@ namespace ASPMyCompany
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
+
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //если проект в стадии разработки, подключаем страницу отабражения ошибок
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
-            // подключаем систему маршрутизации (может нужно поменять местами со следующим)
+            // подключаем систему маршрутизации ( Может нужно поменять местами со следующим UseStaticFiles() ? )
             app.UseRouting();
 
             // подключаем поддержку статических файлов
