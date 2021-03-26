@@ -69,7 +69,10 @@ namespace ASPMyCompany
             });
 
             // добавляем поддержку контроллеров
-            services.AddControllersWithViews()
+            services.AddControllersWithViews(x =>
+                {
+                    x.Conventions.Add(new AdminAreaAuthorisation("Admin", "AdminArea"));
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
@@ -96,6 +99,7 @@ namespace ASPMyCompany
             // подключаем необходимые машруты - эндпоинты
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("admin", "{area:exist}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
